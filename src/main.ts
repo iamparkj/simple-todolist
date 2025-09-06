@@ -1,10 +1,41 @@
-import './style.css'
+// check if add button pressed
+const addButton = document.getElementById("add-button");
 
-document.querySelector<HTMLDivElement>('#app')!.innerHTML = `
-  <div>
-    <h1>Vite + TypeScript</h1>
-    <div class="card">
-      <button id="counter" type="button">Hello!</button>
-    </div>
-  </div>
-`
+// get input value
+const todoInput = document.getElementById("todo-input") as HTMLInputElement;
+const todoList = document.getElementById("todo-list") as HTMLUListElement;
+
+// create a todo item
+function createTodoItem(todoText: string) {
+  const todoItem = document.createElement("li");
+  
+  const checkbox = document.createElement("input");
+  checkbox.type = "checkbox";
+
+  const textSpan = document.createElement("span");
+  textSpan.textContent = todoText;
+
+  const deleteButton = document.createElement("button");
+  deleteButton.textContent = "삭제";
+
+  todoItem.appendChild(checkbox);
+  todoItem.appendChild(textSpan);
+  todoItem.appendChild(deleteButton);
+
+  return todoItem;
+}
+
+// add element to list
+const addTodo = () => {
+  const todoText = todoInput.value.trim();
+
+  if (todoText !== "") {
+    const newTodo = createTodoItem(todoText);
+    todoList.appendChild(newTodo);
+    todoInput.value = ""
+  } else {
+    // TODO: show an alert
+  }
+}
+
+addButton?.addEventListener("click", addTodo);

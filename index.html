@@ -1,12 +1,27 @@
-<!doctype html>
-<html lang="en">
+<!DOCTYPE html>
+<html lang="ko">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Vite + TS</title>
+    <meta name="viewport" content="width=device-width" />
+    <link rel="stylesheet" href="src/style.css" />
+    <title>Todo List</title>
   </head>
   <body>
-    <div id="app"></div>
-    <script type="module" src="/src/main.ts"></script>
+    <div>
+      <h1>오늘의 할 일</h1>
+      <div>
+        <input id="todo-input" />
+        <button id="add-button">추가</button>
+      </div>
+      <div>
+        <div>전체 할 일: <span>0</span></div>
+        <div>완료한 일: <span>0</span></div>
+      </div>
+      <div>
+        <ul id="todo-list">
+        </ul>
+      </div>
+    </div>
   </body>
+  <script type="module" src="src/main.ts"></script>
 </html>
