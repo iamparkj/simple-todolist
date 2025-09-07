@@ -38,10 +38,11 @@ const addTodo = () => {
   if (todoText !== "") {
     const newTodo = createTodoItem(todoText);
     todoList.appendChild(newTodo);
-    todoInput.value = ""
   } else {
-    // TODO: show an alert
+    alert("유효한 문자를 입력해 주세요.");
   }
+
+  todoInput.value = "";
 }
 
 addButton?.addEventListener("click", addTodo);
