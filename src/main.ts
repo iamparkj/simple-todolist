@@ -1,13 +1,31 @@
 // check if add button pressed
 const addButton = document.getElementById("add-button");
 
-// get input value
+// get HTML elements
 const todoInput = document.getElementById("todo-input") as HTMLInputElement;
 const todoList = document.getElementById("todo-list") as HTMLUListElement;
+const totalCount = document.getElementById("total-count") as HTMLSpanElement;
+const doneCount = document.getElementById("done-count") as HTMLSpanElement;
+
+// update todo counts
+function updateCounts() {
+  const totalTodos = todoList.querySelectorAll("li").length;
+  const doneTodos = todoList.querySelectorAll(
+    "input[type='checkbox']:checked"
+  ).length;
+  totalCount.textContent = totalTodos.toString();
+  doneCount.textContent = doneTodos.toString();
+}
 
 // delete a todo item
 function deleteTodo(todoItem: HTMLLIElement) {
   todoList.removeChild(todoItem);
+  updateCounts();
+}
+
+// toggle a todo item
+function toggleTodo() {
+  updateCounts();
 }
 
 // create a todo item
@@ -16,6 +34,7 @@ function createTodoItem(todoText: string) {
   
   const checkbox = document.createElement("input");
   checkbox.type = "checkbox";
+  checkbox.addEventListener("change", toggleTodo);
 
   const textSpan = document.createElement("span");
   textSpan.textContent = todoText;
@@ -38,6 +57,8 @@ const addTodo = () => {
   if (todoText !== "") {
     const newTodo = createTodoItem(todoText);
     todoList.appendChild(newTodo);
+    // todoInput.value = "";
+    updateCounts();
   } else {
     alert("유효한 문자를 입력해 주세요.");
   }
