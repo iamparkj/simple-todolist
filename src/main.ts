@@ -5,6 +5,11 @@ const addButton = document.getElementById("add-button");
 const todoInput = document.getElementById("todo-input") as HTMLInputElement;
 const todoList = document.getElementById("todo-list") as HTMLUListElement;
 
+// delete a todo item
+function deleteTodo(todoItem: HTMLLIElement) {
+  todoList.removeChild(todoItem);
+}
+
 // create a todo item
 function createTodoItem(todoText: string) {
   const todoItem = document.createElement("li");
@@ -17,6 +22,7 @@ function createTodoItem(todoText: string) {
 
   const deleteButton = document.createElement("button");
   deleteButton.textContent = "삭제";
+  deleteButton.addEventListener("click", () => deleteTodo(todoItem));
 
   todoItem.appendChild(checkbox);
   todoItem.appendChild(textSpan);
